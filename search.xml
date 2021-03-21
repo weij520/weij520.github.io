@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>浅析VO、DTO、PO的概念、区别和用处</title>
+    <url>/posts/25f7c824/</url>
+    <content><![CDATA[<p>本篇文章主要一下我们经常会用到的一些对象：VO、DTO和PO。由于上次代码质检，领导说要规范命名习惯，所以就特意去查了这几个的含义<br>首先对上述的概念进行一个简单描述，名字只是个标识，我们重点关注其概念：</p>
+<h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><ul>
+<li>VO（View Object） ：通常用于业务层之间的数据传递，和 PO 一样也是仅仅包含数据而已，但 VO 应该是抽象出的业务对象，可以和表对应，也可以不对应，这根据业务的需要。 如果锅碗瓢盆分别为对应的业务对象的话，那么整个碗柜就是一个值对象。此外，VO 也可以称为页面对象，如果称为页面对象的话，那么它所代表的将是整个页面展示层的对象，也可以由需要的业务对象进行组装而来。</li>
+<li>DTO（Data Transfer Object）：数据传输对象，这个概念来源于J2EE的设计模式，原来的目的是为了EJB的分布式应用提供粗粒度的数据实体，以减少分布式调用的次数，从而提高分布式调用的性能和降低网络负载，但在这里，我泛指用于展示层与服务层之间的数据传输对象。</li>
+<li>PO（Persistent Object）：持久化对象，它跟持久层（通常是关系型数据库）的数据结构形成一一对应的映射关系，如果持久层是关系型数据库，那么，数据表中的每个字段（或若干个）就对应PO的一个（或若干个）属性。</li>
+</ul>
+<h5 id="l-用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。"><a href="#l-用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。" class="headerlink" title="l         用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。"></a>l         用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。</h5><h5 id="l-展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。"><a href="#l-展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。" class="headerlink" title="l         展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。"></a>l         展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。</h5><h5 id="l-服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。"><a href="#l-服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。" class="headerlink" title="l         服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。"></a>l         服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。</h5><p>总结：根据公司的规范来定义后缀 (哈哈)</p>
+]]></content>
+  </entry>
+  <entry>
     <title>BigDecimal的使用</title>
     <url>/posts/6c0bc019/</url>
     <content><![CDATA[<h3 id="BigDecimal简介"><a href="#BigDecimal简介" class="headerlink" title="BigDecimal简介"></a>BigDecimal简介</h3><p>BigDecimal可以表示一个任意大小且精度完全准确的浮点数。<br>Java在java.math包中提供的API类BigDecimal，用来对超过16位有效位的数进行精确的运算。<br>双精度浮点型变量double可以处理16位有效数。<br>在实际应用中，需要对更大或者更小的数进行运算和处理。<br>float和double只能用来做科学计算或者是工程计算，<br>在商业计算中要用java.math.BigDecimal。<br>BigDecimal所创建的是对象，我们不能使用传统的+、-、*、/等算术运算符直接对其对象进行数学运算，<br>而必须调用其相对应的方法。方法中的参数也必须是BigDecimal的对象。构造器是类的特殊方法，<br>专门用来创建对象，特别是带有参数的对象。</p>
@@ -63,18 +75,6 @@
       </categories>
   </entry>
   <entry>
-    <title>浅析VO、DTO、PO的概念、区别和用处</title>
-    <url>/posts/25f7c824/</url>
-    <content><![CDATA[<p>本篇文章主要一下我们经常会用到的一些对象：VO、DTO和PO。由于上次代码质检，领导说要规范命名习惯，所以就特意去查了这几个的含义<br>首先对上述的概念进行一个简单描述，名字只是个标识，我们重点关注其概念：</p>
-<h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><ul>
-<li>VO（View Object） ：通常用于业务层之间的数据传递，和 PO 一样也是仅仅包含数据而已，但 VO 应该是抽象出的业务对象，可以和表对应，也可以不对应，这根据业务的需要。 如果锅碗瓢盆分别为对应的业务对象的话，那么整个碗柜就是一个值对象。此外，VO 也可以称为页面对象，如果称为页面对象的话，那么它所代表的将是整个页面展示层的对象，也可以由需要的业务对象进行组装而来。</li>
-<li>DTO（Data Transfer Object）：数据传输对象，这个概念来源于J2EE的设计模式，原来的目的是为了EJB的分布式应用提供粗粒度的数据实体，以减少分布式调用的次数，从而提高分布式调用的性能和降低网络负载，但在这里，我泛指用于展示层与服务层之间的数据传输对象。</li>
-<li>PO（Persistent Object）：持久化对象，它跟持久层（通常是关系型数据库）的数据结构形成一一对应的映射关系，如果持久层是关系型数据库，那么，数据表中的每个字段（或若干个）就对应PO的一个（或若干个）属性。</li>
-</ul>
-<h5 id="l-用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。"><a href="#l-用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。" class="headerlink" title="l         用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。"></a>l         用户发出请求（可能是填写表单），表单的数据在展示层被匹配为VO。</h5><h5 id="l-展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。"><a href="#l-展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。" class="headerlink" title="l         展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。"></a>l         展示层把VO转换为服务层对应方法所要求的DTO，传送给服务层。</h5><h5 id="l-服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。"><a href="#l-服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。" class="headerlink" title="l         服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。"></a>l         服务层把DO转换为持久层对应的PO（可以使用ORM工具，也可以不用），调用持久层的持久化方法，把PO传递给它，完成持久化操作。</h5><p>总结：根据公司的规范来定义后缀 (哈哈)</p>
-]]></content>
-  </entry>
-  <entry>
     <title>起点</title>
     <url>/posts/4f2fecf/</url>
     <content><![CDATA[<p>写博客的原因呢大概就是发现自己有时候明明百度过一遍的问题第二天又忘记了，再百度一遍、再忘记….。<br>为了防止这个情况再次发生，我决定用博客记录开发过程中遇到的问题，下次遇到的时候找起来方便一点(^_^)</p>
@@ -99,21 +99,24 @@
 ]]></content>
   </entry>
   <entry>
-    <title>javastream去重</title>
-    <url>/posts/d7d72081/</url>
-    <content><![CDATA[<p>List<User> list = new ArrayList&lt;&gt;();<br>list.add(new User(“张三”,”1”));<br>list.add(new User(“张三”,”2”));<br>list.add(new User(“张三”,”3”));<br>list.add(new User(“张三”,”2”));</User></p>
-<h4 id="普通去重"><a href="#普通去重" class="headerlink" title="普通去重"></a>普通去重</h4><p>list.stream().distinct().stream().forEach(e-&gt;{<br>    System.out.println(e.getAge());//结果:1,2,3<br>});</p>
-<h4 id="去重姓名属性字段：取第一条"><a href="#去重姓名属性字段：取第一条" class="headerlink" title="去重姓名属性字段：取第一条"></a>去重姓名属性字段：取第一条</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -&gt; new TreeSet&lt;&gt;(Comparator.comparing(f -&gt; f.getName()))), ArrayList::new))</span><br><span class="line">    .forEach(e-&gt;&#123;</span><br><span class="line">        System.out.println(e.getAge());//结果 1</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+    <title>oracle中merge into使用</title>
+    <url>/posts/3fd8a8dc/</url>
+    <content><![CDATA[<h4 id="本人使用场景：批量导入"><a href="#本人使用场景：批量导入" class="headerlink" title="本人使用场景：批量导入"></a>本人使用场景：批量导入</h4><span style="color: red;font-size:16px ">
+ 作用:判断Ｂ表和Ａ表是否满足ON中条件，如果满足则用B表去更新A表，如果不满足，则将B表数据插入A表但是有很多可选项
+</span>
 
 
-<h4 id="去重姓名属性字段：取最后一条（最新）"><a href="#去重姓名属性字段：取最后一条（最新）" class="headerlink" title="去重姓名属性字段：取最后一条（最新）"></a>去重姓名属性字段：取最后一条（最新）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Map&lt;String, User&gt; appleMap = list.stream().collect(Collectors.toMap(User::getName, a -&gt; a, (oldValue, newValue) -&gt; newValue));</span><br><span class="line">list = new ArrayList(appleMap.values());</span><br><span class="line">list.stream().forEach(e-&gt;&#123;</span><br><span class="line">    System.out.println(e.getAge());//结果 2</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="merge-into的形式："><a href="#merge-into的形式：" class="headerlink" title="merge into的形式："></a>merge into的形式：</h3> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MERGE INTO tableA a</span><br><span class="line">USING [tableB or sql语句] b </span><br><span class="line">ON ( a.code&#x3D;b.code )</span><br><span class="line">WHEN MATCHED THEN</span><br><span class="line">[ update sql]</span><br><span class="line">WHEN NOT MATCHED THEN</span><br><span class="line">[INSERT sql]</span><br></pre></td></tr></table></figure>
+
+
+
 
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>数据库</category>
       </categories>
       <tags>
-        <tag>Java8新特性</tag>
+        <tag>oracle</tag>
       </tags>
   </entry>
   <entry>
@@ -148,24 +151,21 @@
 ]]></content>
   </entry>
   <entry>
-    <title>oracle中merge into使用</title>
-    <url>/posts/3fd8a8dc/</url>
-    <content><![CDATA[<h4 id="本人使用场景：批量导入"><a href="#本人使用场景：批量导入" class="headerlink" title="本人使用场景：批量导入"></a>本人使用场景：批量导入</h4><span style="color: red;font-size:16px ">
- 作用:判断Ｂ表和Ａ表是否满足ON中条件，如果满足则用B表去更新A表，如果不满足，则将B表数据插入A表但是有很多可选项
-</span>
+    <title>javastream去重</title>
+    <url>/posts/d7d72081/</url>
+    <content><![CDATA[<p>List<User> list = new ArrayList&lt;&gt;();<br>list.add(new User(“张三”,”1”));<br>list.add(new User(“张三”,”2”));<br>list.add(new User(“张三”,”3”));<br>list.add(new User(“张三”,”2”));</User></p>
+<h4 id="普通去重"><a href="#普通去重" class="headerlink" title="普通去重"></a>普通去重</h4><p>list.stream().distinct().stream().forEach(e-&gt;{<br>    System.out.println(e.getAge());//结果:1,2,3<br>});</p>
+<h4 id="去重姓名属性字段：取第一条"><a href="#去重姓名属性字段：取第一条" class="headerlink" title="去重姓名属性字段：取第一条"></a>去重姓名属性字段：取第一条</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -&gt; new TreeSet&lt;&gt;(Comparator.comparing(f -&gt; f.getName()))), ArrayList::new))</span><br><span class="line">    .forEach(e-&gt;&#123;</span><br><span class="line">        System.out.println(e.getAge());//结果 1</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 
 
-<h3 id="merge-into的形式："><a href="#merge-into的形式：" class="headerlink" title="merge into的形式："></a>merge into的形式：</h3> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MERGE INTO tableA a</span><br><span class="line">USING [tableB or sql语句] b </span><br><span class="line">ON ( a.code&#x3D;b.code )</span><br><span class="line">WHEN MATCHED THEN</span><br><span class="line">[ update sql]</span><br><span class="line">WHEN NOT MATCHED THEN</span><br><span class="line">[INSERT sql]</span><br></pre></td></tr></table></figure>
-
-
-
+<h4 id="去重姓名属性字段：取最后一条（最新）"><a href="#去重姓名属性字段：取最后一条（最新）" class="headerlink" title="去重姓名属性字段：取最后一条（最新）"></a>去重姓名属性字段：取最后一条（最新）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Map&lt;String, User&gt; appleMap = list.stream().collect(Collectors.toMap(User::getName, a -&gt; a, (oldValue, newValue) -&gt; newValue));</span><br><span class="line">list = new ArrayList(appleMap.values());</span><br><span class="line">list.stream().forEach(e-&gt;&#123;</span><br><span class="line">    System.out.println(e.getAge());//结果 2</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>数据库</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>oracle</tag>
+        <tag>Java8新特性</tag>
       </tags>
   </entry>
 </search>
