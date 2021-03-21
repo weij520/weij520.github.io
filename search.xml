@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>BigDecimal的使用</title>
-    <url>/blog/posts/6c0bc019/</url>
+    <url>/posts/6c0bc019/</url>
     <content><![CDATA[<h3 id="BigDecimal简介"><a href="#BigDecimal简介" class="headerlink" title="BigDecimal简介"></a>BigDecimal简介</h3><p>BigDecimal可以表示一个任意大小且精度完全准确的浮点数。<br>Java在java.math包中提供的API类BigDecimal，用来对超过16位有效位的数进行精确的运算。<br>双精度浮点型变量double可以处理16位有效数。<br>在实际应用中，需要对更大或者更小的数进行运算和处理。<br>float和double只能用来做科学计算或者是工程计算，<br>在商业计算中要用java.math.BigDecimal。<br>BigDecimal所创建的是对象，我们不能使用传统的+、-、*、/等算术运算符直接对其对象进行数学运算，<br>而必须调用其相对应的方法。方法中的参数也必须是BigDecimal的对象。构造器是类的特殊方法，<br>专门用来创建对象，特别是带有参数的对象。</p>
 <h3 id="构造器描述"><a href="#构造器描述" class="headerlink" title="构造器描述"></a>构造器描述</h3><p>BigDecimal(int)       创建一个具有参数所指定整数值的对象。<br>BigDecimal(double) 创建一个具有参数所指定双精度值的对象。 //不推荐使用，还是会失去精度<br>BigDecimal(long)    创建一个具有参数所指定长整数值的对象。<br>BigDecimal(String) 创建一个具有参数所指定以字符串表示的数值的对象。//推荐使用</p>
 <h3 id="方法描述"><a href="#方法描述" class="headerlink" title="方法描述"></a>方法描述</h3><table>
@@ -64,7 +64,7 @@
   </entry>
   <entry>
     <title>浅析VO、DTO、PO的概念、区别和用处</title>
-    <url>/blog/posts/25f7c824/</url>
+    <url>/posts/25f7c824/</url>
     <content><![CDATA[<p>本篇文章主要一下我们经常会用到的一些对象：VO、DTO和PO。由于上次代码质检，领导说要规范命名习惯，所以就特意去查了这几个的含义<br>首先对上述的概念进行一个简单描述，名字只是个标识，我们重点关注其概念：</p>
 <h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><ul>
 <li>VO（View Object） ：通常用于业务层之间的数据传递，和 PO 一样也是仅仅包含数据而已，但 VO 应该是抽象出的业务对象，可以和表对应，也可以不对应，这根据业务的需要。 如果锅碗瓢盆分别为对应的业务对象的话，那么整个碗柜就是一个值对象。此外，VO 也可以称为页面对象，如果称为页面对象的话，那么它所代表的将是整个页面展示层的对象，也可以由需要的业务对象进行组装而来。</li>
@@ -76,13 +76,13 @@
   </entry>
   <entry>
     <title>起点</title>
-    <url>/blog/posts/4f2fecf/</url>
+    <url>/posts/4f2fecf/</url>
     <content><![CDATA[<p>写博客的原因呢大概就是发现自己有时候明明百度过一遍的问题第二天又忘记了，再百度一遍、再忘记….。<br>为了防止这个情况再次发生，我决定用博客记录开发过程中遇到的问题，下次遇到的时候找起来方便一点(^_^)</p>
 ]]></content>
   </entry>
   <entry>
     <title>idea好用的插件（持续更新慢慢记录）</title>
-    <url>/blog/posts/816bbc3f/</url>
+    <url>/posts/816bbc3f/</url>
     <content><![CDATA[<h3 id="（一）阿里代码扫描插件安装-（IDEA）"><a href="#（一）阿里代码扫描插件安装-（IDEA）" class="headerlink" title="（一）阿里代码扫描插件安装 （IDEA）"></a>（一）阿里代码扫描插件安装 （IDEA）</h3><p>File -&gt; Setting -&gt; Plugins<br>搜索全称 Alibaba Java Coding Guidelines  或者 alibaba   ,然后安装第一个，重启idea… </p>
 <p>使用的时候鼠标右键项目，编码规约扫描。  over over</p>
 <h3 id="（二）保存自动格式化-idea插件（save-Actions）"><a href="#（二）保存自动格式化-idea插件（save-Actions）" class="headerlink" title="（二）保存自动格式化-idea插件（save Actions）"></a>（二）保存自动格式化-idea插件（save Actions）</h3><p>2020年12月8日今天代码质检，领导说保持良好的代码规范与风格很重要，就安利了一款代码格式化的插件。<br>IntelliJ 默认是自动保存的，因此很多时候修改后就出现：代码没有格式化、存在无用的import。<br>其实IntelliJ  Save Action就是一个实用的插件可以帮我们提高效率。</p>
@@ -99,8 +99,26 @@
 ]]></content>
   </entry>
   <entry>
+    <title>javastream去重</title>
+    <url>/posts/d7d72081/</url>
+    <content><![CDATA[<p>List<User> list = new ArrayList&lt;&gt;();<br>list.add(new User(“张三”,”1”));<br>list.add(new User(“张三”,”2”));<br>list.add(new User(“张三”,”3”));<br>list.add(new User(“张三”,”2”));</User></p>
+<h4 id="普通去重"><a href="#普通去重" class="headerlink" title="普通去重"></a>普通去重</h4><p>list.stream().distinct().stream().forEach(e-&gt;{<br>    System.out.println(e.getAge());//结果:1,2,3<br>});</p>
+<h4 id="去重姓名属性字段：取第一条"><a href="#去重姓名属性字段：取第一条" class="headerlink" title="去重姓名属性字段：取第一条"></a>去重姓名属性字段：取第一条</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -&gt; new TreeSet&lt;&gt;(Comparator.comparing(f -&gt; f.getName()))), ArrayList::new))</span><br><span class="line">    .forEach(e-&gt;&#123;</span><br><span class="line">        System.out.println(e.getAge());//结果 1</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="去重姓名属性字段：取最后一条（最新）"><a href="#去重姓名属性字段：取最后一条（最新）" class="headerlink" title="去重姓名属性字段：取最后一条（最新）"></a>去重姓名属性字段：取最后一条（最新）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Map&lt;String, User&gt; appleMap = list.stream().collect(Collectors.toMap(User::getName, a -&gt; a, (oldValue, newValue) -&gt; newValue));</span><br><span class="line">list = new ArrayList(appleMap.values());</span><br><span class="line">list.stream().forEach(e-&gt;&#123;</span><br><span class="line">    System.out.println(e.getAge());//结果 2</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java8新特性</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java 8 stream第一篇：基本使用</title>
-    <url>/blog/posts/1dc7e74b/</url>
+    <url>/posts/1dc7e74b/</url>
     <content><![CDATA[<h3 id="什么是Stream"><a href="#什么是Stream" class="headerlink" title="什么是Stream"></a>什么是Stream</h3><p>Stream（流）是一个来自数据源的元素队列并支持聚合操作</p>
 <ul>
 <li>元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。</li>
@@ -130,26 +148,8 @@
 ]]></content>
   </entry>
   <entry>
-    <title>javastream去重</title>
-    <url>/blog/posts/d7d72081/</url>
-    <content><![CDATA[<p>List<User> list = new ArrayList&lt;&gt;();<br>list.add(new User(“张三”,”1”));<br>list.add(new User(“张三”,”2”));<br>list.add(new User(“张三”,”3”));<br>list.add(new User(“张三”,”2”));</User></p>
-<h4 id="普通去重"><a href="#普通去重" class="headerlink" title="普通去重"></a>普通去重</h4><p>list.stream().distinct().stream().forEach(e-&gt;{<br>    System.out.println(e.getAge());//结果:1,2,3<br>});</p>
-<h4 id="去重姓名属性字段：取第一条"><a href="#去重姓名属性字段：取第一条" class="headerlink" title="去重姓名属性字段：取第一条"></a>去重姓名属性字段：取第一条</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -&gt; new TreeSet&lt;&gt;(Comparator.comparing(f -&gt; f.getName()))), ArrayList::new))</span><br><span class="line">    .forEach(e-&gt;&#123;</span><br><span class="line">        System.out.println(e.getAge());//结果 1</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="去重姓名属性字段：取最后一条（最新）"><a href="#去重姓名属性字段：取最后一条（最新）" class="headerlink" title="去重姓名属性字段：取最后一条（最新）"></a>去重姓名属性字段：取最后一条（最新）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Map&lt;String, User&gt; appleMap = list.stream().collect(Collectors.toMap(User::getName, a -&gt; a, (oldValue, newValue) -&gt; newValue));</span><br><span class="line">list = new ArrayList(appleMap.values());</span><br><span class="line">list.stream().forEach(e-&gt;&#123;</span><br><span class="line">    System.out.println(e.getAge());//结果 2</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java8新特性</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>oracle中merge into使用</title>
-    <url>/blog/posts/3fd8a8dc/</url>
+    <url>/posts/3fd8a8dc/</url>
     <content><![CDATA[<h4 id="本人使用场景：批量导入"><a href="#本人使用场景：批量导入" class="headerlink" title="本人使用场景：批量导入"></a>本人使用场景：批量导入</h4><span style="color: red;font-size:16px ">
  作用:判断Ｂ表和Ａ表是否满足ON中条件，如果满足则用B表去更新A表，如果不满足，则将B表数据插入A表但是有很多可选项
 </span>
